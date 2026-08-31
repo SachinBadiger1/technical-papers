@@ -75,8 +75,8 @@ Content Delivery Networks cache static and sometimes dynamic content at location
 Caching is an important technique for improving the performance and scalability of modern software applications. By storing frequently accessed data in a faster storage layer, applications can reduce database load and respond to users more quickly. Common strategies such as cache-aside, read-through, write-through, and write-back provide different ways of managing cached data. However, caching also introduces challenges such as stale data, invalidation, memory usage, and consistency. A good caching design therefore considers the application's read and write patterns, freshness requirements, cache size, TTL, and failure scenarios. When implemented correctly, caching can significantly improve application performance while reducing the load on expensive backend resources.
 
 ## References
-* [AWS - Caching]([https://aws.amazon.com/caching/))
-* [MDN Web Docs - Caching Stratergies]([https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching#caching_strategies))
-* [AWS - Cache Validity]([https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/cache-validity.html))
-* [Redis Documentation - Cache-invalidatio]([https://redis.io/docs/latest/develop/use-cases/cache-aside/](https://redis.io/glossary/cache-invalidation/))
-* [MDN Web Docs - Types of caches ]([https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching#types_of_caches))
+- [AWS – Caching](https://aws.amazon.com/caching/)
+- [MDN Web Docs – Caching Strategies](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching#caching_strategies)
+- [AWS – Cache Validity](https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/cache-validity.html)
+- [Redis Documentation – Cache Invalidation](https://redis.io/glossary/cache-invalidation/)
+- [MDN Web Docs – Types of Caches](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching#types_of_caches)
