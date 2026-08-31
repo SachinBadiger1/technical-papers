@@ -21,15 +21,15 @@ Consider an e-commerce application where thousands of users frequently request i
 
 A caching strategy determines when data should be stored in the cache, when cached data should be used, and when fresh data should be retrieved from the network. The right strategy depends on the application's requirements, especially performance and data freshness.
 
-# Cache First
+### Cache First
 
   The application checks the cache before accessing the network. If the data is available, it is returned immediately. Otherwise, it is fetched from the network and can be stored in the cache. This strategy is useful for static resources such as images, CSS, and JavaScript files.
 
-# Cache First with Refresh
+### Cache First with Refresh
 
   Also called stale-while-revalidate, this strategy returns cached data immediately while requesting an updated version from the network in the background. The new response is then used to refresh the cache. It provides fast responses while keeping cached data reasonably fresh.
   
-# Network First
+### Network First
 
   The application tries the network first to obtain the latest data. If the network request fails, it uses the cached version if available. This strategy is useful for frequently changing data such as messages, news, and account information.
 
