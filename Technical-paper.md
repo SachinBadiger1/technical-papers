@@ -17,22 +17,21 @@ A typical caching process works as follows:
 
 Consider an e-commerce application where thousands of users frequently request information about the same product. Querying the database for every request can increase database load and response time. By storing frequently accessed product information in a cache, most requests can be served without accessing the database.
 
-
 ## Caching Strategies
 
 A caching strategy determines when data should be stored in the cache, when cached data should be used, and when fresh data should be retrieved from the network. The right strategy depends on the application's requirements, especially performance and data freshness.
 
-#Cache First
+# Cache First
 
-The application checks the cache before accessing the network. If the data is available, it is returned immediately. Otherwise, it is fetched from the network and can be stored in the cache. This strategy is useful for static resources such as images, CSS, and JavaScript files.
+  The application checks the cache before accessing the network. If the data is available, it is returned immediately. Otherwise, it is fetched from the network and can be stored in the cache. This strategy is useful for static resources such as images, CSS, and JavaScript files.
 
-#Cache First with Refresh
+# Cache First with Refresh
 
-Also called stale-while-revalidate, this strategy returns cached data immediately while requesting an updated version from the network in the background. The new response is then used to refresh the cache. It provides fast responses while keeping cached data reasonably fresh.
+  Also called stale-while-revalidate, this strategy returns cached data immediately while requesting an updated version from the network in the background. The new response is then used to refresh the cache. It provides fast responses while keeping cached data reasonably fresh.
+  
+# Network First
 
-#Network First
-
-The application tries the network first to obtain the latest data. If the network request fails, it uses the cached version if available. This strategy is useful for frequently changing data such as messages, news, and account information.
+  The application tries the network first to obtain the latest data. If the network request fails, it uses the cached version if available. This strategy is useful for frequently changing data such as messages, news, and account information.
 
 Choosing the right caching strategy depends on how often the data changes and how important freshness is. Different resources in the same application can use different caching strategies.
 
@@ -47,37 +46,9 @@ A small random variation, known as TTL jitter, can also be added to expiration t
 
 ## Cache Invalidation
 
+Cache invalidation is the process of removing or updating cached data when it is no longer valid or has become outdated. It helps ensure that the cache contains relevant information and stays consistent with the primary data source.
 
-
-## Advantages of Caching
-
-Caching provides several benefits:
-
-* Reduces application response time.
-* Reduces the number of database queries.
-* Decreases database and backend server load.
-* Improves application scalability.
-* Reduces network traffic for frequently accessed resources.
-* Can improve availability when frequently requested data is already cached.
-* Allows frequently accessed data to be served from fast memory.
-
-Browser and HTTP caches can also reduce requests to origin servers by reusing previously retrieved responses. This can improve the responsiveness of websites and reduce server processing requirements.
-
-## Disadvantages and Challenges
-
-Caching is not suitable for every type of data. It introduces additional complexity into an application.
-
-Some common challenges are:
-
-* Stale data can be returned to users.
-* Cache invalidation can be difficult to implement correctly.
-* Cached data consumes memory.
-* Cache failures can affect application performance.
-* Incorrect cache keys can return incorrect data.
-* Popular keys can expire simultaneously and cause a large number of requests to reach the database. This is known as a cache stampede.
-* Maintaining consistency between the cache and the primary database can be difficult.
-
-Therefore, caching should be introduced based on actual application requirements rather than simply adding a cache to every database operation.
+For example, when a user's profile information is updated in the database, the corresponding cached data should also be updated or removed. Otherwise, the application may continue to show outdated information. Cache invalidation becomes more challenging in distributed systems because the same data may exist in multiple caches or system layers. Proper invalidation helps maintain data consistency and prevents applications from serving incorrect or stale information.
 
 ## Types of Caches
 
@@ -104,9 +75,8 @@ Content Delivery Networks cache static and sometimes dynamic content at location
 Caching is an important technique for improving the performance and scalability of modern software applications. By storing frequently accessed data in a faster storage layer, applications can reduce database load and respond to users more quickly. Common strategies such as cache-aside, read-through, write-through, and write-back provide different ways of managing cached data. However, caching also introduces challenges such as stale data, invalidation, memory usage, and consistency. A good caching design therefore considers the application's read and write patterns, freshness requirements, cache size, TTL, and failure scenarios. When implemented correctly, caching can significantly improve application performance while reducing the load on expensive backend resources.
 
 ## References
-
-* [AWS - Cache Validity]([https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/caching-patterns.html](https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/cache-validity.html))
-* [MDN Web Docs - HTTP Caching]([https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching#caching_strategies))
+* [AWS - Caching]([https://aws.amazon.com/caching/))
+* [MDN Web Docs - Caching Stratergies]([https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Caching#caching_strategies))
+* [AWS - Cache Validity]([https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/cache-validity.html))
 * [Redis Documentation - Cache-invalidatio]([https://redis.io/docs/latest/develop/use-cases/cache-aside/](https://redis.io/glossary/cache-invalidation/))
-* [AWS - Caching Strategies for Memcached](https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html)
-* [MDN Web Docs - Cache-Control Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control)
+* [MDN Web Docs - Types of caches ]([https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching#types_of_caches))
